@@ -15,7 +15,21 @@ function increase() {
 const state = reactive({ count: 100 });
 
 const label = ref("Prova Label");
+
+function decreaseStateCount() {
+  --state.count;
+}
+
+const computedCountLimit = computed(() => {
+  return state.count < 90 ? "Limite superato" : "Perfetto";
+});
+
+function computedcountLimitFn(){
+    return state.count < 90 ? "Limite superato" : "Perfetto";
+}
+
 </script>
+
 <template>
   <div>
     <section>
@@ -29,9 +43,10 @@ const label = ref("Prova Label");
     </section>
     <section>
       <h2>Stato reattivo con reactive</h2>
+      <button @click="decreaseStateCount">Decrementa count</button>
       <button @click="state.count++">Incrementa count</button>
       <div>Count: {{ state.count }}</div>
-      <div>Stato: {{ state.count < 90 ? "Limite superato" : "Perfetto" }}</div>
+      <div>Stato: {{ computedCountLimit }}</div>
     </section>
   </div>
 </template>
